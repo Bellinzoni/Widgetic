@@ -24,7 +24,7 @@
 
 		function widgeticBox(opts){
 			popup = editor.windowManager.open( {
-				title: 'Widgetic plugin',
+				title: 'Widgetic for WordPress',
 				width: window.innerWidth*.9,
 				height: Math.min(740, window.innerHeight*.9),
 				resizable: true,
