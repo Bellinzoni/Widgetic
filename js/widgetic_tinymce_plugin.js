@@ -25,8 +25,9 @@
 		function widgeticBox(opts){
 			popup = editor.windowManager.open( {
 				title: 'Widgetic plugin',
-				width: 920,
-				height: 600,
+				width: window.innerWidth*.9,
+				height: Math.min(740, window.innerHeight*.9),
+				resizable: true,
 				buttons: []
 			});
 			var showPlugin = wigetic_plugin.bind(null, jQuery('#'+popup._id+'-body')[0], opts);
