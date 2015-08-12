@@ -39,7 +39,7 @@ add_action( "wp_ajax_wdtc_disconnect", "wdtc_disconnect" );
 
 function widgetic_plugin_settings_page() {
 	?>
-	<h2>Widgetic for WordPress</h2>
+	<h2>Widgetic</h2>
 	<div class="wrap widgetic-wrap">
 	<?php
 	if(get_option('widgetic_refresh_token') && get_option('widgetic_accept') == true){

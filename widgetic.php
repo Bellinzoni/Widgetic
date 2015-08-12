@@ -1,12 +1,12 @@
 <?php
 /**
-* Plugin Name: Widgetic for WordPress
-* Plugin URI: http://mypluginuri.com/
-* Description: A brief description about your plugin.
-* Version: 2.0 or whatever version of the plugin (pretty self explanatory)
-* Author: Plugin Author's Name
-* Author URI: Author's website
-* License: A "Slug" license name e.g. GPL12
+* Plugin Name: Widgetic
+* Plugin URI: https://widgetic.com/
+* Description: Widgetic for WordPress makes it easy to create responsive widgets for your site.
+* Version: 1.0
+* Author: Vuzum
+* Author URI: https://widgetic.com/
+* License: GPLv2 or later
 */
 
 
