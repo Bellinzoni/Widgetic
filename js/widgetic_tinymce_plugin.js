@@ -12,6 +12,7 @@
 	);
 	Widgetic.auth(false);
 
+
 	tinymce.PluginManager.add(widgetic, function( editor ) {
 		// Add a button that opens a window
 		editor.addButton(widgetic, {

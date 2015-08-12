@@ -1,6 +1,6 @@
 <?php
 /**
-* Plugin Name: Widgetic
+* Plugin Name: Widgetic for WordPress
 * Plugin URI: http://mypluginuri.com/
 * Description: A brief description about your plugin.
 * Version: 2.0 or whatever version of the plugin (pretty self explanatory)
@@ -10,10 +10,22 @@
 */
 
 
+/* 
+ * Plugin settings 
+ */
+include_once('includes/widgetic_settings.php');
+
+/**
+ * 
+ */
+include_once('includes/widgetic_auth.php');
+
+/*
+ * 
+ */
 add_action('init', 'widgetic_setup');
 function widgetic_setup(){
 	add_action('admin_init', 'widgetic_admin_init');
-	//Add Shortcode
 	add_shortcode('widgetic', 'widgetic_shortcode');
 
 }
@@ -23,16 +35,17 @@ function widgetic_admin_init(){
 }
 
 
-/**
+/*
  * Inject Widgetic SDK to <head></head> (front-end)
- **/
+ */
 add_action('wp_enqueue_scripts', 'widgetic_sdk');
-function widgetic_sdk(){
-	wp_register_script('sdk', 'https://widgetic.com/sdk/sdk.js', false, '3.0', false);
-	wp_enqueue_script('sdk');
-}
 add_action('wp_head', 'widgetic_sdk');
 add_action('admin_head', 'widgetic_sdk');
+function widgetic_sdk(){
+	wp_register_script('sdk', 'https://widgetic.com/sdk/sdk.js', false, '1.0', false);
+	wp_enqueue_script('sdk');
+}
+
 
 function getBasePath(){
 	$basePath = get_site_url();
@@ -40,11 +53,35 @@ function getBasePath(){
 }
 add_action('admin_head', 'getBasePath');
 
+function settingsScripts(){
+	wp_register_script('wdtc-plugin-settings', plugins_url( '/js/wdtc-plugin-settings.js', __FILE__ ), false, '1.0', false);
+	wp_enqueue_script('wdtc-plugin-settings');
 
+	wp_register_script('wdtc-init-sdk', plugins_url( '/js/wdtc-init-sdk.js', __FILE__ ), false, '1.0', false);
+	wp_enqueue_script('wdtc-init-sdk');
+}
+add_action('admin_head', 'settingsScripts');
+
+function authToken(){
+	if($response = get_authToken()){
+		$authToken = json_decode($response, true);
+		update_option('widgetic_refresh_token', $authToken['refresh_token'], true);
+	    echo '<script type="text/javascript">
+	    	var widgeticAuthToken = "'.$authToken['access_token'].'";
+	    	var widgeticRefreshToken = "'.$authToken['refresh_token'].'";
+	    </script>';
+	}
+}
+add_action('admin_head', 'authToken');
+
+/*
+ * Include plugin css file 
+ */
 function widgetic_css() {
 	wp_enqueue_style('widgetic', plugins_url('/css/style.css', __FILE__));
 }
 add_action('admin_enqueue_scripts', 'widgetic_css');
+
 
 
 
@@ -62,11 +99,17 @@ function widgetic_add_button() {
 }
 
 
+/* 
+ * Register widgetic button
+ */
 function widgetic_register_button($buttons) {
 	array_push($buttons, "widgetic");
 	return $buttons;
 }
 
+/*
+ * Add widgetic external plugin for tinymce editor
+ */
 function widgetic_add_tinymce_plugin($plugin_array) {
 	$plugin_array['widgetic'] = plugins_url( '/js/widgetic_tinymce_plugin.js', __FILE__ ); // CHANGE THE BUTTON SCRIPT HERE
 	return $plugin_array;
@@ -74,7 +117,9 @@ function widgetic_add_tinymce_plugin($plugin_array) {
 
 
 
-
+/*
+ * Create visual template
+ */
 function widgetic_shortcode_print_templates(){
 	if(!isset(get_current_screen()->id) || (get_current_screen()->base != 'post' && get_current_screen()->base != 'page'))
 		return;
@@ -93,7 +138,9 @@ function widgetic_shortcode_print_templates(){
 	<?php
  }
 
-// create shortcode
+/*
+ * Return shortcode output
+ */
 function widgetic_shortcode($atts, $content = null){
 	$output = false;
 	extract(shortcode_atts(array(
@@ -115,6 +162,11 @@ function widgetic_add_editor_styles() {
 	add_editor_style(plugins_url('/css/style.css', __FILE__));
 }
 add_action( 'admin_init', 'widgetic_add_editor_styles' );
+
+
+/*
+ * Get media 
+ */
 
 function getMedia(){
 	$type = $_POST['type'];
