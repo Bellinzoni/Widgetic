@@ -53,6 +53,14 @@ function getBasePath(){
 }
 add_action('admin_head', 'getBasePath');
 
+
+function getApiKey(){
+	$apiKey = esc_attr(get_option('widgetic_api_key'));
+	echo '<script type="text/javascript"> var apiKey = "'.$apiKey.'";</script>';
+}
+add_action('admin_head', 'getApiKey');
+
+
 function settingsScripts(){
 	wp_register_script('wdtc-plugin-settings', plugins_url( '/js/wdtc-plugin-settings.js', __FILE__ ), false, '1.0', false);
 	wp_enqueue_script('wdtc-plugin-settings');
@@ -165,9 +173,8 @@ add_action( 'admin_init', 'widgetic_add_editor_styles' );
 
 
 /*
- * Get media 
+ * Get media
  */
-
 function getMedia(){
 	$type = $_POST['type'];
 	$query_media_args = array(

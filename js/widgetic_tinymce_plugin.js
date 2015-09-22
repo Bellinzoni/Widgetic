@@ -5,12 +5,14 @@
 		shortcode_string = 'widgetic',
 		myButton = null;
 	var	frame;
+	if(apiKey.length > 0) {
+		Widgetic.init(
+			'55bb70c409c7e24c618b4567_5xti0pl4fgg0kkw4c44gs0c4sc80s0kwsk4808kowsw0gsckwg',
+			basePath+'/wp-content/plugins/widgetic/assets/wdtc-proxy.html'
+		);
+		Widgetic.auth(false);
+	}
 
-	Widgetic.init(
-		'55bb70c409c7e24c618b4567_5xti0pl4fgg0kkw4c44gs0c4sc80s0kwsk4808kowsw0gsckwg',
-		basePath+'/wp-content/plugins/widgetic/assets/wdtc-proxy.html'
-	);
-	Widgetic.auth(false);
 
 
 	tinymce.PluginManager.add(widgetic, function( editor ) {
@@ -32,13 +34,7 @@
 				buttons: []
 			});
 			var showPlugin = wigetic_plugin.bind(null, jQuery('#'+popup._id+'-body')[0], opts);
-			if(Widgetic.auth.status().status == 'connected'){
-				showPlugin()
-			} else {
-				Widgetic.auth(true)
-				.then(showPlugin)
-				.fail(function(){console.log('failed')})
-			}
+			showPlugin()
 		}
 
 		function loadMediaContent(plugin, opts) {
@@ -67,7 +63,6 @@
 				frame.open();
 				return;
 			}
-			console.log(opts['content-type'][0]);
 			frame = wp.media.frames.frame = wp.media({
 				multiple: 'add',
 				library : { type: opts['content-type'][0]},	
