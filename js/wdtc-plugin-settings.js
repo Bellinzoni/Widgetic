@@ -1,15 +1,16 @@
 ;(function($){
-	var $form = $('form[name="wdtc-plugin-form"]'),
-		$secret = $form.find('.widgetic_secret'),
-		$public = $form.find('.widgetic_api_key'),
-		$refresh = $form.find('.widgetic_refresh_token');
-		$accept = $form.find('.widgetic_accept'),
-		$userEmail = $form.find('.widgetic_user_email'), 
-		$widgeticWrap = $('.widgetic-wrap');
+	var $form            = $('form[name="wdtc-plugin-form"]'),
+		$secret          = $form.find('.widgetic_secret'),
+		$public          = $form.find('.widgetic_api_key'),
+		$refresh         = $form.find('.widgetic_refresh_token');
+		$accept          = $form.find('.widgetic_accept'),
+		$userEmail       = $form.find('.widgetic_user_email'), 
+		$userAccountPlan = $form.find('.widgetic_user_account_plan'),
+		$widgeticWrap    = $('.widgetic-wrap');
 	$form.on('submit', function(e){
 		e.preventDefault();
 		Widgetic.init($public.val(), basePath+'/wp-content/plugins/widgetic/assets/wdtc-proxy.html');
-		Widgetic.auth(true).then(function(tokens){
+		Widgetic.auth(true, ['account_details']).then(function(tokens){
 			$refresh.val(tokens['refreshToken']);
 			$form.unbind('submit');
 			$form.submit();
@@ -50,10 +51,12 @@
 		});
 	})
 
-	var $user_email = $('.wdtc-email').text();
+	var $user_email = $('.wdtc-email').text().toLowerCase();
+	var $user_account_plan = $('.wdtc-account-plan span').text();
+
 	Widgetic.api('users/me')
 		.then(function(user) {
-			if($user_email !=  user.username){
+			if($user_email !=  user.username || $user_account_plan != user.subscription.plan.name){
 				updateUser(user);
 			}
 		})
@@ -67,10 +70,13 @@
 			data: {
 				action: 'wdtc_updateUser',
 				test: '1234532', 
-				email: user.username
+				email: user.username, 
+				account_type: user.subscription.plan.name
 			}
 		}).success(function(data) {
 			$('.wdtc-email').text(user.username);
+			$('.wdtc-account-plan span').text(user.subscription.plan.name);
+
 		});
 	}
 })(jQuery);

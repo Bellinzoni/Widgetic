@@ -26,6 +26,8 @@ add_action( "wp_ajax_wdtc_accept", "wdtc_accept" );
 
 function wdtc_updateUser(){
 	update_option('widgetic_user_email', $_POST['email'], true);
+	update_option('widgetic_user_account_plan', $_POST['account_type'], true);
+
 }
 add_action( "wp_ajax_nopriv_wdtc_updateUser", "wdtc_updateUser" );
 add_action( "wp_ajax_wdtc_updateUser", "wdtc_updateUser" );
@@ -49,8 +51,14 @@ function widgetic_plugin_settings_page() {
 				<th scope="row">Email:</th>
 				<td class="wdtc-email"><?php echo esc_attr(get_option('widgetic_user_email')); ?></td>
 			</tr>
+			<tr valign="top">
+				<th scope="row">Account Type:</th>
+				<td class="wdtc-account-plan">
+					<span style="text-transform: capitalize;"><?php echo esc_attr(get_option('widgetic_user_account_plan')); ?> </span><?php if(strcmp(esc_attr(get_option('widgetic_user_account_plan')), 'basic') == 0){ ?> (<a href="https://widgetic.com/plans/">upgrade</a>) <?php } ?>
+				</td>
+			</tr>
 		</table>
-		<button class="wdtc_disconnect button-primary" style="margin-right:75px;">Disconnect</button>
+		<p class="submit"><button class="wdtc_disconnect button-primary" style="margin-right:75px;">Disconnect</button></p>
 
 	<?php
 	} else {
@@ -84,6 +92,10 @@ function widgetic_plugin_settings_page() {
 					</tr>
 					<tr valign="top">
 						<td colspan="2" style="padding:0;"><input type="hidden" name="widgetic_user_email" class="regular-text widgetic_user_email" value="<?php echo esc_attr(get_option('widgetic_user_email')); ?>" /></td>
+					</tr>
+
+					<tr valign="top">
+						<td colspan="2" style="padding:0;"><input type="hidden" name="widgetic_user_account_plan" class="regular-text widgetic_user_account_plan" value="<?php echo esc_attr(get_option('widgetic_user_email')); ?>" /></td>
 					</tr>
 				</table>
 				<input type="submit" class="button button-primary" value="Save Changes">
