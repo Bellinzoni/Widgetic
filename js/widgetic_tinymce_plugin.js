@@ -7,7 +7,7 @@
 	var	frame;
 	if(apiKey.length > 0) {
 		Widgetic.init(
-			'55bb70c409c7e24c618b4567_5xti0pl4fgg0kkw4c44gs0c4sc80s0kwsk4808kowsw0gsckwg',
+			apiKey,
 			basePath+'/wp-content/plugins/widgetic/assets/wdtc-proxy.html'
 		);
 		Widgetic.auth(false);
