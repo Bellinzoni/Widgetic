@@ -26,15 +26,20 @@
 		});
 
 		function widgeticBox(opts){
-			popup = editor.windowManager.open( {
-				title: 'Widgetic',
-				width: window.innerWidth*.9,
-				height: Math.min(740, window.innerHeight*.9),
-				resizable: true,
-				buttons: []
-			});
-			var showPlugin = wigetic_plugin.bind(null, jQuery('#'+popup._id+'-body')[0], opts);
-			showPlugin()
+			if(apiKey.length > 0 && widgeticAuthToken){
+
+				popup = editor.windowManager.open( {
+					title: 'Widgetic',
+					width: window.innerWidth*.9,
+					height: Math.min(740, window.innerHeight*.9),
+					resizable: true,
+					buttons: []
+				});
+				var showPlugin = wigetic_plugin.bind(null, jQuery('#'+popup._id+'-body')[0], opts);
+				showPlugin()
+			} else {
+				window.location.href="admin.php?page=widgetic/includes/widgetic_settings.php"
+			}
 		}
 
 		function loadMediaContent(plugin, opts) {
