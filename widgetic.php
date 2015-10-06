@@ -24,6 +24,7 @@ include_once('includes/widgetic_auth.php');
  * 
  */
 add_action('init', 'widgetic_setup');
+
 function widgetic_setup(){
 	add_action('admin_init', 'widgetic_admin_init');
 	add_shortcode('widgetic', 'widgetic_shortcode');
@@ -49,14 +50,18 @@ function widgetic_sdk(){
 
 function getBasePath(){
 	$basePath = get_site_url();
-    echo '<script type="text/javascript"> var basePath = "'.$basePath.'";</script>';
+	echo '<script type="text/javascript"> var basePath = "'.$basePath.'";</script>';
 }
 add_action('admin_head', 'getBasePath');
 
 
 function getApiKey(){
 	$apiKey = esc_attr(get_option('widgetic_api_key'));
-	echo '<script type="text/javascript"> var apiKey = "'.$apiKey.'";</script>';
+	$widgetic_refresh_token = esc_attr(get_option('widgetic_refresh_token'));
+	echo '<script type="text/javascript"> 
+			var apiKey = "'.$apiKey.'",
+				widgetic_refresh_token = "'.$widgetic_refresh_token.'";
+		</script>';
 }
 add_action('admin_head', 'getApiKey');
 
@@ -71,14 +76,18 @@ function settingsScripts(){
 add_action('admin_head', 'settingsScripts');
 
 function authToken(){
+	$access_token = '';
+	$refresh_token = '';
 	if($response = get_authToken()){
 		$authToken = json_decode($response, true);
 		update_option('widgetic_refresh_token', $authToken['refresh_token'], true);
-	    echo '<script type="text/javascript">
-	    	var widgeticAuthToken = "'.$authToken['access_token'].'";
-	    	var widgeticRefreshToken = "'.$authToken['refresh_token'].'";
-	    </script>';
+		$access_token = $authToken['access_token'];
+		$refresh_token = $authToken['refresh_token'];
 	}
+	echo '<script type="text/javascript">
+		var widgeticAuthToken = "'.$access_token.'";
+		var widgeticRefreshToken = "'.$refresh_token.'";
+	</script>';
 }
 add_action('admin_head', 'authToken');
 
@@ -178,23 +187,24 @@ add_action( 'admin_init', 'widgetic_add_editor_styles' );
 function getMedia(){
 	$type = $_POST['type'];
 	$query_media_args = array(
-	    'post_type' => 'attachment', 'post_mime_type' => $type, 'post_status' => 'inherit', 'posts_per_page' => -1,
+		'post_type' => 'attachment', 'post_mime_type' => $type, 'post_status' => 'inherit', 'posts_per_page' => -1,
 	);
 
 	$query_media = new WP_Query( $query_media_args );
 
 	$media_array = array();
 	foreach ( $query_media->posts as $media) {
-	    $media_array[]= array(
-	    	'id'   => $media->ID,
-	    	'name' => $media->post_title,
-	    	'url'  => wp_get_attachment_url($media->ID), 
-	    	'type' => $type
-	    );
+		$media_array[]= array(
+			'id'   => $media->ID,
+			'name' => $media->post_title,
+			'url'  => wp_get_attachment_url($media->ID), 
+			'type' => $type
+		);
 	}
 	die(json_encode($media_array));
 }
 add_action( "wp_ajax_nopriv_getMedia", "getMedia" );
 add_action( "wp_ajax_getMedia", "getMedia" );
+
 
 ?>

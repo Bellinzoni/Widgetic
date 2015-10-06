@@ -69,3 +69,6 @@ i.widgetic-own-icon {
 .mce-content-body .wpview-wrap[data-wpview-type="widgetic"] {
 	margin-bottom:  0;
 }
+.widgetic_error {
+	color:red;
+}

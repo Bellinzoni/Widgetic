@@ -14,7 +14,7 @@ function register_widgetic_plugin_settings() {
 	register_setting( 'widgetic-plugin-settings-group', 'widgetic_refresh_token');
 	register_setting( 'widgetic-plugin-settings-group', 'widgetic_accept');
 	register_setting( 'widgetic-plugin-settings-group', 'widgetic_user_email');
-
+	register_setting( 'widgetic-plugin-settings-group', 'widgetic_logged_in');
 
 
 }
@@ -95,8 +95,9 @@ function widgetic_plugin_settings_page() {
 					</tr>
 
 					<tr valign="top">
-						<td colspan="2" style="padding:0;"><input type="hidden" name="widgetic_user_account_plan" class="regular-text widgetic_user_account_plan" value="<?php echo esc_attr(get_option('widgetic_user_email')); ?>" /></td>
+						<td colspan="2" style="padding:0;"><input type="hidden" name="widgetic_user_account_plan" class="regular-text widgetic_user_account_plan" value="<?php echo esc_attr(get_option('widgetic_user_account_plan')); ?>" /></td>
 					</tr>
+					
 				</table>
 				<input type="submit" class="button button-primary" value="Save Changes">
 			</form>

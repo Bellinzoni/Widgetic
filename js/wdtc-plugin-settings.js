@@ -15,7 +15,8 @@
 			$form.unbind('submit');
 			$form.submit();
 		}).fail(function(){
-			var error = '<p class="error">Please make sure you filled at least one URL on Widgetic and that you copied the correct keys.</p>'
+			$widgeticWrap .find('p.widgetic_error').remove()
+			var error = '<p class="widgetic_error">Please make sure you added "'+window.location.hostname+'" as redirect URL on your Widgetic <a href="https://widgetic.com/account/settings" target="_blank">Settings page</a> and that you copied the correct keys.</p>'
 			$widgeticWrap.prepend(error);
 		});
 	});
@@ -54,12 +55,14 @@
 	var $user_email = $('.wdtc-email').text().toLowerCase();
 	var $user_account_plan = $('.wdtc-account-plan span').text();
 
-	Widgetic.api('users/me')
-		.then(function(user) {
-			if($user_email !=  user.username || $user_account_plan != user.subscription.plan.name){
-				updateUser(user);
-			}
-		})
+	if(apiKey.length > 0 && widgeticAuthToken) {
+		Widgetic.api('users/me')
+			.then(function(user) {
+				if($user_email !=  user.username || $user_account_plan != user.subscription.plan.name){
+					updateUser(user);
+				}
+			})
+	}
 	
 	function updateUser(user){
 		jQuery.ajax({
