@@ -37,7 +37,6 @@
 					return tryAuth().then(widgeticBox);
 				}
 
-				console.log(window.innerHeight);
 				popup = editor.windowManager.open( {
 					title: 'Widgetic',
 					width: window.innerWidth-60,
