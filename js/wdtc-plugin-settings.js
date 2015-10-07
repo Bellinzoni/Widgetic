@@ -9,13 +9,13 @@
 		$widgeticWrap    = $('.widgetic-wrap');
 	$form.on('submit', function(e){
 		e.preventDefault();
+		$widgeticWrap .find('p.widgetic_error').remove()
 		Widgetic.init($public.val(), basePath+'/wp-content/plugins/widgetic/assets/wdtc-proxy.html');
 		Widgetic.auth(true, ['account_details']).then(function(tokens){
 			$refresh.val(tokens['refreshToken']);
 			$form.unbind('submit');
 			$form.submit();
 		}).fail(function(){
-			$widgeticWrap .find('p.widgetic_error').remove()
 			var error = '<p class="widgetic_error">Please make sure you added "'+window.location.hostname+'" as redirect URL on your Widgetic <a href="https://widgetic.com/account/settings" target="_blank">Settings page</a> and that you copied the correct keys.</p>'
 			$widgeticWrap.prepend(error);
 		});
