@@ -11,7 +11,7 @@
 		e.preventDefault();
 		$widgeticWrap .find('p.widgetic_error').remove()
 		Widgetic.init($public.val(), basePath+'/wp-content/plugins/widgetic/assets/wdtc-proxy.html');
-		Widgetic.auth(true, ['account_details']).then(function(tokens){
+		Widgetic.auth(true, ["email", "skins", "compositions", "usage", "account_details"]).then(function(tokens){
 			$refresh.val(tokens['refreshToken']);
 			$form.unbind('submit');
 			$form.submit();
