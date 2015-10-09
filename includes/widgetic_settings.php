@@ -34,6 +34,11 @@ add_action( "wp_ajax_wdtc_updateUser", "wdtc_updateUser" );
 
 function wdtc_disconnect(){
 	update_option('widgetic_refresh_token', '', true);
+	update_option('widgetic_api_key', '', true);
+	update_option('widgetic_secret', '', true);
+	update_option('widgetic_user_email', '', true);
+	update_option('widgetic_accept', '', true);
+	update_option('widgetic_user_account_plan', '', true);
 }
 add_action( "wp_ajax_nopriv_wdtc_disconnect", "wdtc_disconnect" );
 add_action( "wp_ajax_wdtc_disconnect", "wdtc_disconnect" );
