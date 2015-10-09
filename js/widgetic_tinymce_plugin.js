@@ -6,10 +6,17 @@
 		shortcode_string = 'widgetic',
 		myButton = null,
 		saveToken = function(token) {
-			widgeticAuthToken = token.accessToken;
+			window.widgeticAuthToken = token.access_token;
+			Widgetic.auth.token(widgeticAuthToken);
 		},
 		tryAuth = function(){
-			return Widgetic.auth(false, ['account_details']).then(saveToken);
+			return jQuery.ajax({
+				url: basePath + '/wp-admin/admin-ajax.php',
+				type: 'GET',
+				dataType: 'json',
+				cache: true, 
+				data: {action: 'wdtcToken'}
+			}).success(saveToken);
 		};
 	var	frame;
 	if(apiKey.length > 0) {
@@ -17,7 +24,7 @@
 			apiKey,
 			basePath+'/wp-content/plugins/widgetic/assets/wdtc-proxy.html'
 		);
-		tryAuth();
+		window.widgeticAuthToken || tryAuth();
 	}
 
 

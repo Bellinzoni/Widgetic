@@ -16,6 +16,7 @@
 			$form.unbind('submit');
 			$form.submit();
 		}).fail(function(){
+			$widgeticWrap .find('p.widgetic_error').remove()
 			var error = '<p class="widgetic_error">Please make sure you added "'+window.location.hostname+'" as redirect URL on your Widgetic <a href="https://widgetic.com/account/settings" target="_blank">Settings page</a> and that you copied the correct keys.</p>'
 			$widgeticWrap.prepend(error);
 		});

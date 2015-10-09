@@ -80,7 +80,6 @@ function authToken(){
 	$refresh_token = '';
 	if($response = get_authToken()){
 		$authToken = json_decode($response, true);
-		update_option('widgetic_refresh_token', $authToken['refresh_token'], true);
 		$access_token = $authToken['access_token'];
 		$refresh_token = $authToken['refresh_token'];
 	}
@@ -205,6 +204,5 @@ function getMedia(){
 }
 add_action( "wp_ajax_nopriv_getMedia", "getMedia" );
 add_action( "wp_ajax_getMedia", "getMedia" );
-
 
 ?>

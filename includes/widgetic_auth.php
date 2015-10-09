@@ -1,5 +1,10 @@
 <?php
 
+function updateRefreshToken($token) {
+	$authToken = json_decode($token, true);
+	update_option('widgetic_refresh_token', $authToken['refresh_token'], true);
+}
+
 function get_authToken()
 {
 	if(!function_exists('curl_version')){
@@ -21,5 +26,15 @@ function get_authToken()
 	curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
 	$result = curl_exec($ch);
 	curl_close($ch);
+
+	updateRefreshToken($result);
+
 	return $result;
 }
+
+function wdtcToken(){
+	echo get_authToken();die;
+}
+
+add_action( "wp_ajax_nopriv_wdtcToken", "wdtcToken" );
+add_action( "wp_ajax_wdtcToken", "wdtcToken" );
