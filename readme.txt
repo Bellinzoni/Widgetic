@@ -8,15 +8,15 @@ Stable tag: 2.3.7
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Widgetic for WordPress makes it easy to create responsive widgets for your site.
+Widgetic makes it easy to create beautiful widgets for your WordPress site.
 
 == Description ==
 
 *Adding widgets to your WordPress site should be easy. With this plugin, it finally is.*
 
-Widgetic for WordPress provides you with a wide range of responsive widgets you can choose from and we’re constantly adding new widgets based on popular requests. 
+Widgetic for WordPress provides you with a library of widgets you can use for your site, which can be customised using our `three steps Editor`. Not only can you change the look and feel of the widgets, but we also give you the ability to connect to different sources for your content.
 
-Using our `three steps Editor` users can customise the look and feel of the widgets and also add content from different sources (`Instagram`, `Facebook`, `Dropbox`, `Flickr`, `Google Drive`, `WordPress Media Library` and others). 
+What’s great is that we’re constantly adding new widgets to our library based on your feedback. So don’t hesitate to get in touch.
 
 
 
@@ -27,7 +27,7 @@ https://www.youtube.com/watch?v=h2IwurxJZA8&list=PLsXYcnX346dcbmrXml2XdRZuZdAZQq
 
 - Connect with your Widgetic account in just 1 click.
  
-- User friendly & mobile optimized widgets.
+- User friendly & mobile optimised widgets.
 
 - Customisable look and feel.
 
@@ -57,12 +57,12 @@ You can [contribute code to this plugin via GitHub](https://github.com/widgetic-
 
 = What is Widgetic? =
 
-Widgetic for WordPress is a plugin that connects your WordPress site to Widgetic, so you will need to have a Widgetic account first. Widgetic is a widget publishing tool that allows you to create customisable widgets using a simple WYSIWYG Editor. Widgetic is absolutely free for up to 5 widgets, with unlimited number of uses (for example you can create hundreds of widgets based on the Image Zoom Widget). Widgetic is a great choice if you want to engage your users.
+Widgetic for WordPress is a plugin that connects your WordPress site to Widgetic, so you will need to have a Widgetic account first. Widgetic is a widget publishing tool that allows you to create customizable widgets using a simple WYSIWYG Editor. Widgetic is absolutely free for up to 5 widgets, with unlimited number of uses (for example you can create hundreds of widgets based on the Image Zoom Widget). Widgetic is a great choice if you want to engage your users.
 
 If you do not have a Widgetic account, [create one here in 20 seconds](https://widgetic.com?ref=wp).
 
 
-The widgets are hosted on our platform and we continously improve them based on user feedback. To add a widget to your site, we use embed codes, just like YouTube.
+The widgets are hosted on our platform and we continuously improve them based on user feedback. To add a widget to your site, we use embed codes, just like YouTube.
 
 
 Find out more at: [https://www.widgetic.com](https://widgetic.com?ref=wp).
@@ -89,7 +89,7 @@ Install Widgetic for WordPress either via the WordPress.org plugin directory, or
 
 
 = How to display a widget in posts or pages? =
-Cerate a new widget in pages or posts by using the Widgetic icon ![Small icon](https://dl.dropboxusercontent.com/spa/9xf6wkaibabfmez/o5rpwd99.png) in the Text Editor.
+Create a new widget in pages or posts by using the Widgetic icon ![Small icon](https://dl.dropboxusercontent.com/spa/9xf6wkaibabfmez/o5rpwd99.png) in the Text Editor.
 
 = How to edit an existing widget? =
 If you want to Edit / Preview an embedded widget, click on the red widget placeholder and select Edit.
@@ -132,8 +132,17 @@ Development of the plugin happens on GitHub: [/widgetic-for-wordpress](https://g
 == Screenshots ==
 
 1. Connecting to your Widgetic account is easy.
-2. The widgets displayed in the plugin by popularity.
-3. Editing a widget's layout and content.
+2. In the New Post screen the widgetic icon opens the plugin.
+3. The main screen where you can see all your widgets.
+4. Searching for a specific widget.
+5. Selecting a widget to customize.
+6. Editing a widget’s look and feel (Image Zoom)
+7. Editing a widget’s look and feel (Post it Note)
+8. Editing a widget’s content (FAQ Accordion)
+9. Editing a widget’s content (Image Zoom)
+10. Editing a widget’s content details (Image Zoom)
+11. Preview of a customized widget (Before and After Gallery)
+12. Embedding options.
 
 == Upgrade Notice ==
 
