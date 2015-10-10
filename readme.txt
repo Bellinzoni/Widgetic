@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: widget, widgetic, gallery, galleries, image, images, lightbox, modal, overlay, photo, photos, picture, pictures, slideshow, slideshows, theme, video, videos, gallery lightbox, image lightbox, lightbox gallery, lightbox popup, responsive lightbox, photo gallery, google map, image slider, responsive, player, audio, video, music, playback, plugin, plugins, feed, before and after, accordion, mp3, mp4, wordpress image lightbox, wordpress lightbox, wordpress slideshow lightbox, short code, shortcode, shortcodes, slider, image zoom, image album, album, albums, fancybox, image captions imagebrowser, image gallery, media, media gallery, photo albums, photographer, photography, Picture Gallery, responsive galleries, responsive gallery, singlepic, slideshow galleries, slideshow gallery, thumbnail galleries, thumbnail gallery, thumbnails, wordpress gallery plugin, wordpress photo gallery plugin, wordpress responsive gallery, wp gallery, wp gallery plugins
 Requires at least: 4.2
 Tested up to: 4.2.4
-Stable tag: 2.3.7
+Stable tag: 1.0
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
