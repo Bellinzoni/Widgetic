@@ -22,7 +22,7 @@
 	if(apiKey.length > 0) {
 		Widgetic.init(
 			apiKey,
-			basePath+'/wp-content/plugins/widgetic/assets/wdtc-proxy.html'
+			basePath+'/wp-content/plugins/widgetic/proxy/wdtc-proxy.html'
 		);
 		window.widgeticAuthToken || tryAuth();
 	}
