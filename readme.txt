@@ -21,7 +21,7 @@ What’s great is that we’re constantly adding new widgets to our library base
 
 
 = Customisation of a sample widget: =
-https://www.youtube.com/watch?v=h2IwurxJZA8&list=PLsXYcnX346dcbmrXml2XdRZuZdAZQqDLl&index=1
+https://www.youtube.com/watch?v=0Lp0td9--A8
 
 = Existing Features =
 
