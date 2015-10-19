@@ -3,7 +3,7 @@
 * Plugin Name: Widgetic
 * Plugin URI: https://widgetic.com/
 * Description: Widgetic for WordPress makes it easy to create responsive widgets for your site.
-* Version: 1.0
+* Version: 1.0.3
 * Author: Widgetic
 * Author URI: https://widgetic.com/
 * License: GPLv2 or later
